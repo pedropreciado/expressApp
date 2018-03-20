@@ -1,5 +1,5 @@
 import React from "react";
-import style from "style";
+import style from "./style";
 
 class CommentForm extends React.Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class CommentForm extends React.Component {
     this.setState({ text: event.target.value });
   }
 
-  handleSubmit(event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
 
     console.log(`${this.state.author} said ${this.state.text}`);
@@ -56,3 +56,5 @@ class CommentForm extends React.Component {
     )
   }
 }
+
+export default CommentForm;

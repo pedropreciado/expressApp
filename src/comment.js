@@ -1,5 +1,5 @@
 import React from "react";
-import style from "style";
+import style from "./style";
 import marked from "marked";
 
 class Comment extends React.Component {
@@ -27,3 +27,5 @@ class Comment extends React.Component {
     )
   }
 }
+
+export default Comment;
