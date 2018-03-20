@@ -3,7 +3,9 @@ import Comment from "./comment";
 import style from "./style";
 
 class CommentList extends React.Component {
+
   render() {
+    console.log(this.props);    
     let commentNodes = this.props.data.map((comment) => {
       return (
         <Comment

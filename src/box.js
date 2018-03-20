@@ -11,28 +11,25 @@ class Box extends React.Component {
       data: []
     };
   }
-  
+
   loadCommentsFromServer = () => {
     axios.get(this.props.url).then((res) => {
       this.setState({ data: res.data });
     })
   }
-  
+
   componentDidMount() {
     this.loadCommentsFromServer();
     setInterval(this.loadCommentsFromServer, this.props.pollInterval);
   }
-  
+
   handleCommentSubmit = (comment) => {
     axios.post(this.props.url, comment)
-    .then((res) => {
-      this.setState({ data:res });
-    })
     .catch((err) => {
       console.error(err);
     })
   }
-  
+
   render() {
     return (
       <div
@@ -44,7 +41,7 @@ class Box extends React.Component {
         <CommentList
           data={ this.state.data }
         />
-        <CommentForm 
+        <CommentForm
         onCommentSubmit={ this.handleCommentSubmit }
         />
       </div>
