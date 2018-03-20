@@ -11,6 +11,20 @@ class CommentForm extends React.Component {
     }
   }
 
+  handleAuthorChange = (event) => {
+    this.setState({ author: event.target.value });
+  }
+
+  handleTextChange = (event) => {
+    this.setState({ text: event.target.value });
+  }
+
+  handleSubmit(event) => {
+    event.preventDefault();
+
+    console.log(`${this.state.author} said ${this.state.text}`);
+  }
+
   render() {
     return (
       <form
