@@ -30,6 +30,23 @@ class Box extends React.Component {
     })
   }
 
+  handleCommentDelete = (id) => {
+    axios.delete(`${this.props.url}/${id}`)
+      .then((res) => {
+        console.log("comment deleted! ❌");
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  handleCommentUpdate = (id, comment) => {
+    axios.put(`${this.props.url}/${id}`, comment)
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
   render() {
     return (
       <div
@@ -40,6 +57,8 @@ class Box extends React.Component {
         </h2>
         <CommentList
           data={ this.state.data }
+          onCommentDelete={this.handleCommentDelete}
+          onCommentUpdate={this.handleCommentUpdate}
         />
         <CommentForm
         onCommentSubmit={ this.handleCommentSubmit }
