@@ -1,7 +1,7 @@
 import React from "react";
+import axios from "axios";
 import CommentList from "./comment_list";
 import CommentForm from "./comment_form";
-import DATA from "./data";
 import style from "./style";
 
 class Box extends React.Component {
@@ -11,7 +11,18 @@ class Box extends React.Component {
       data: []
     };
   }
-
+  
+  loadCommentsFromServer = () => {
+    axios.get(this.props.url).then((res) => {
+      this.setState({ data: res.data });
+    })
+  }
+  
+  componentDidMount() {
+    this.loadCommentsFromServer();
+    setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+  }
+  
   render() {
     return (
       <div
@@ -21,9 +32,11 @@ class Box extends React.Component {
           Comments:
         </h2>
         <CommentList
-          data={ DATA }
+          data={ this.state.data }
         />
-        <CommentForm />
+        <CommentForm 
+        onCommentSubmit={ this.handleCommentSubmit }
+        />
       </div>
     )
   }

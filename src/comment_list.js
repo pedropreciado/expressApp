@@ -8,7 +8,7 @@ class CommentList extends React.Component {
       return (
         <Comment
           author={ comment.author }
-          key={comment.id}
+          key={comment["_id"]}
         >
         {
           comment.text
