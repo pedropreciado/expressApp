@@ -5,12 +5,15 @@ import style from "./style";
 class CommentList extends React.Component {
 
   render() {
-    console.log(this.props);    
+    console.log(this.props);
     let commentNodes = this.props.data.map((comment) => {
       return (
         <Comment
           author={ comment.author }
-          key={comment["_id"]}
+          uniqueID={ comment["_id"] }
+          onCommentDelete={ this.props.onCommentDelete}
+          onCommentUpdate={ this.props.onCommentUpdate}
+          key={ comment["_id"] }
         >
         {
           comment.text
